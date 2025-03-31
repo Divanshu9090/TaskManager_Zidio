@@ -6,9 +6,9 @@ function classNames(...classes) {
 
 export default function Tabs({ tabs, setSelected, children }) {
   return (
-    <div className='w-full px-1 sm:px-0'>
+    <div className="w-full px-1 sm:px-0">
       <Tab.Group>
-        <Tab.List className='flex space-x-6 rounded-xl p-1'>
+        <Tab.List className="flex space-x-6 rounded-xl p-1">
           {tabs.map((tab, index) => (
             <Tab
               key={tab.title}
@@ -28,7 +28,7 @@ export default function Tabs({ tabs, setSelected, children }) {
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className='w-full mt-2'>{children}</Tab.Panels>
+        <Tab.Panels className="w-full mt-2">{children}</Tab.Panels>
       </Tab.Group>
     </div>
   );

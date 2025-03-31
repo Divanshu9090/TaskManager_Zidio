@@ -6,7 +6,11 @@ import { getInitials } from "../utils";
 import clsx from "clsx";
 import ConfirmatioDialog, { UserAction } from "../components/Dialogs";
 import AddUser from "../components/AddUser";
-import { useGetTeamListQuery, useDeleteUserMutation, useUserActionMutation } from "../redux/slices/api/userApiSlice";
+import {
+  useGetTeamListQuery,
+  useDeleteUserMutation,
+  useUserActionMutation,
+} from "../redux/slices/api/userApiSlice";
 import { toast } from "sonner";
 
 const Users = () => {
@@ -20,7 +24,7 @@ const Users = () => {
 
   const userActionHandler = async () => {
     try {
-      const result = await userAction({ 
+      const result = await userAction({
         isActive: !selected?.isActive,
         id: selected?._id,
       });
@@ -35,7 +39,7 @@ const Users = () => {
       toast.error(error?.data?.message || "An error occurred");
     }
   };
-  const deleteHandler = async() => {
+  const deleteHandler = async () => {
     try {
       const result = await deleteUser(selected);
       refetch();
@@ -66,13 +70,13 @@ const Users = () => {
   };
 
   const TableHeader = () => (
-    <thead className='border-b border-gray-300'>
-      <tr className='text-black text-left'>
-        <th className='py-2'>Full Name</th>
-        <th className='py-2'>Title</th>
-        <th className='py-2'>Email</th>
-        <th className='py-2'>Role</th>
-        <th className='py-2'>Active</th>
+    <thead className="border-b border-gray-300">
+      <tr className="text-black text-left">
+        <th className="py-2">Full Name</th>
+        <th className="py-2">Title</th>
+        <th className="py-2">Email</th>
+        <th className="py-2">Role</th>
+        <th className="py-2">Active</th>
       </tr>
     </thead>
   );
@@ -90,9 +94,9 @@ const Users = () => {
         </div>
       </td>
 
-      <td className='p-2'>{user.title}</td>
-      <td className='p-2'>{user.email || "user.emal.com"}</td>
-      <td className='p-2'>{user.role}</td>
+      <td className="p-2">{user.title}</td>
+      <td className="p-2">{user.email || "user.emal.com"}</td>
+      <td className="p-2">{user.role}</td>
 
       <td>
         <button
@@ -106,18 +110,18 @@ const Users = () => {
         </button>
       </td>
 
-      <td className='p-2 flex gap-4 justify-end'>
+      <td className="p-2 flex gap-4 justify-end">
         <Button
-          className='text-blue-600 hover:text-blue-500 font-semibold sm:px-0'
-          label='Edit'
-          type='button'
+          className="text-green-600 hover:text-green-500 font-semibold sm:px-0"
+          label="Edit"
+          type="button"
           onClick={() => editClick(user)}
         />
 
         <Button
-          className='text-red-700 hover:text-red-500 font-semibold sm:px-0'
-          label='Delete'
-          type='button'
+          className="text-red-700 hover:text-red-500 font-semibold sm:px-0"
+          label="Delete"
+          type="button"
           onClick={() => deleteClick(user?._id)}
         />
       </td>
@@ -126,9 +130,9 @@ const Users = () => {
 
   return (
     <>
-      <div className='w-full md:px-1 px-0 mb-6'>
-        <div className='flex items-center justify-between mb-8'>
-          <Title title='  Team Members' />
+      <div className="w-full md:px-1 px-0 mb-6">
+        <div className="flex items-center justify-between mb-8">
+          <Title title="  Team Members" />
           <Button
             label='Add New User'
             icon={<IoMdAdd className='text-lg' />}
@@ -137,9 +141,9 @@ const Users = () => {
           />
         </div>
 
-        <div className='bg-white px-2 md:px-4 py-4 shadow-md rounded'>
-          <div className='overflow-x-auto'>
-            <table className='w-full mb-5'>
+        <div className="bg-white px-2 md:px-4 py-4 shadow-md rounded">
+          <div className="overflow-x-auto">
+            <table className="w-full mb-5">
               <TableHeader />
               <tbody>
                 {data?.map((user, index) => (

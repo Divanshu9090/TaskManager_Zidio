@@ -74,7 +74,7 @@ const Sidebar = () => {
         )}
       >
         {el.icon}
-        <span className='hover:text-[#2564ed]'>{el.label}</span>
+        <span className="hover:text-[#2564ed]">{el.label}</span>
       </Link>
     );
   };
