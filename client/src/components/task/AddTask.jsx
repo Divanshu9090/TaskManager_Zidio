@@ -4,7 +4,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiImages } from "react-icons/bi";
 import { toast } from "sonner";
-import { useCreateTaskMutation, useUpdateTaskMutation } from "../../redux/slices/api/taskapiSlice";
+import {
+  useCreateTaskMutation,
+  useUpdateTaskMutation,
+} from "../../redux/slices/api/taskApiSlice";
 import { dateFormatter } from "../../utils";
 import Button from "../Button";
 import ModalWrapper from "../ModalWrapper";
@@ -19,7 +22,6 @@ const PRIORIRY = ["HIGH", "MEDIUM", "NORMAL", "LOW"];
 const uploadedFileURLs = [];
 
 const AddTask = ({ open, setOpen, task }) => {
-
   const defaultValues = {
     title: task?.title || "",
     date: dateFormatter(task?.date || new Date()),
@@ -42,13 +44,13 @@ const AddTask = ({ open, setOpen, task }) => {
   const [assets, setAssets] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const [ createTask, { isLoading }] = useCreateTaskMutation();
-  const [ updateTask, { isLoading: isUpdating } ] = useUpdateTaskMutation();
+  const [createTask, { isLoading }] = useCreateTaskMutation();
+  const [updateTask, { isLoading: isUpdating }] = useUpdateTaskMutation();
 
   const URLS = task?.assets ? [...task.assets] : [];
 
-  const submitHandler = async(data) => {
-    for(const file of assets) {
+  const submitHandler = async (data) => {
+    for (const file of assets) {
       setUploading(true);
       try {
         await uploadFile(file);
@@ -64,11 +66,11 @@ const AddTask = ({ open, setOpen, task }) => {
         team,
         stage,
         priority,
-        assets: [...URLS, ...uploadedFileURLs]
+        assets: [...URLS, ...uploadedFileURLs],
       };
-      const res = task?._id 
-      ? await updateTask({...newData, _id: task._id}).unwrap() 
-      : await createTask(newData).unwrap();
+      const res = task?._id
+        ? await updateTask({ ...newData, _id: task._id }).unwrap()
+        : await createTask(newData).unwrap();
       toast.success(res?.message);
       setTimeout(() => {
         setOpen(false);
@@ -88,10 +90,10 @@ const AddTask = ({ open, setOpen, task }) => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", import.meta.env.VITE_APP_UPLOAD_PRESET);
-    formData.append('cloud_name',import.meta.env.VITE_APP_NAME);
+    formData.append("cloud_name", import.meta.env.VITE_APP_NAME);
     try {
       const response = await axios.post(
-        import.meta.env.VITE_APP_CLOUDINARY_URL, 
+        import.meta.env.VITE_APP_CLOUDINARY_URL,
         formData
       );
       const { secure_url } = response.data;
@@ -108,40 +110,40 @@ const AddTask = ({ open, setOpen, task }) => {
       <ModalWrapper open={open} setOpen={setOpen}>
         <form onSubmit={handleSubmit(submitHandler)}>
           <Dialog.Title
-            as='h2'
-            className='text-base font-bold leading-6 text-gray-900 mb-4'
+            as="h2"
+            className="text-base font-semibold leading-6 text-gray-900 mb-4" // Adjusted to font-semibold
           >
             {task ? "UPDATE TASK" : "ADD TASK"}
           </Dialog.Title>
 
-          <div className='mt-2 flex flex-col gap-6'>
+          <div className="mt-2 flex flex-col gap-6">
             <Textbox
-              placeholder='Task Title'
-              type='text'
-              name='title'
-              label='Task Title'
-              className='w-full rounded'
+              placeholder="Task Title"
+              type="text"
+              name="title"
+              label="Task Title"
+              className="w-full rounded font-serif" // Changed to font-serif
               register={register("title", { required: "Title is required" })}
               error={errors.title ? errors.title.message : ""}
             />
 
             <UserList setTeam={setTeam} team={team} />
 
-            <div className='flex gap-4'>
+            <div className="flex gap-4">
               <SelectList
-                label='Task Stage'
+                label="Task Stage"
                 lists={LISTS}
                 selected={stage}
                 setSelected={setStage}
               />
 
-              <div className='w-full'>
+              <div className="w-full">
                 <Textbox
-                  placeholder='Date'
-                  type='date'
-                  name='date'
-                  label='Task Date'
-                  className='w-full rounded'
+                  placeholder="Date"
+                  type="date"
+                  name="date"
+                  label="Task Date"
+                  className="w-full rounded font-serif" // Changed to font-serif
                   register={register("date", {
                     required: "Date is required!",
                   })}
@@ -150,25 +152,25 @@ const AddTask = ({ open, setOpen, task }) => {
               </div>
             </div>
 
-            <div className='flex gap-4'>
+            <div className="flex gap-4">
               <SelectList
-                label='Priority Level'
+                label="Priority Level"
                 lists={PRIORIRY}
                 selected={priority}
                 setSelected={setPriority}
               />
 
-              <div className='w-full flex items-center justify-center mt-4'>
+              <div className="w-full flex items-center justify-center mt-4">
                 <label
-                  className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer my-4'
-                  htmlFor='imgUpload'
+                  className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer my-4"
+                  htmlFor="imgUpload"
                 >
                   <input
-                    type='file'
-                    className='hidden'
-                    id='imgUpload'
+                    type="file"
+                    className="hidden"
+                    id="imgUpload"
                     onChange={(e) => handleSelect(e)}
-                    accept='.jpg, .png, .jpeg'
+                    accept=".jpg, .png, .jpeg"
                     multiple={true}
                   />
                   <BiImages />
@@ -177,28 +179,28 @@ const AddTask = ({ open, setOpen, task }) => {
               </div>
             </div>
             {isLoading || isUpdating ? (
-            <div className='py-5'>
-              <Loading />
-            </div>
+              <div className="py-5">
+                <Loading />
+              </div>
             ) : (
-              <div className='bg-gray-50 py-6 sm:flex sm:flex-row-reverse gap-4'>
+              <div className="bg-gray-50 py-6 sm:flex sm:flex-row-reverse gap-4">
                 {uploading ? (
-                  <span className='text-sm py-2 text-red-500'>
+                  <span className="text-sm py-2 text-red-500">
                     Uploading assets
                   </span>
                 ) : (
                   <Button
-                    label='Submit'
-                    type='submit'
-                    className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700  sm:w-auto'
+                    label="Submit"
+                    type="submit"
+                    className="bg-teal-600 px-8 text-sm font-semibold text-white hover:bg-teal-700 sm:w-auto" // Updated button style to teal
                   />
                 )}
 
                 <Button
-                  type='button'
-                  className='bg-white px-5 text-sm font-semibold text-gray-900 sm:w-auto'
+                  type="button"
+                  className="bg-gray-200 px-5 text-sm font-semibold text-gray-900 sm:w-auto" // Updated cancel button style to light gray
                   onClick={() => setOpen(false)}
-                  label='Cancel'
+                  label="Cancel"
                 />
               </div>
             )}

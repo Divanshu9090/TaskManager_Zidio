@@ -32,44 +32,44 @@ const AddSubTask = ({ open, setOpen, id }) => {
   return (
     <>
       <ModalWrapper open={open} setOpen={setOpen}>
-        <form onSubmit={handleSubmit(handleOnSubmit)} className=''>
+        <form onSubmit={handleSubmit(handleOnSubmit)} className="">
           <Dialog.Title
-            as='h2'
-            className='text-base font-bold leading-6 text-gray-900 mb-4'
+            as="h2"
+            className="text-base font-semibold leading-6 text-gray-900 mb-4" // Adjusted font style here
           >
             ADD SUB-TASK
           </Dialog.Title>
-          <div className='mt-2 flex flex-col gap-6'>
+          <div className="mt-2 flex flex-col gap-6">
             <Textbox
-              placeholder='Sub-Task title'
-              type='text'
-              name='title'
-              label='Title'
-              className='w-full rounded'
+              placeholder="Sub-Task title"
+              type="text"
+              name="title"
+              label="Title"
+              className="w-full rounded font-serif" // Changed to font-serif for different font style
               register={register("title", {
                 required: "Title is required!",
               })}
               error={errors.title ? errors.title.message : ""}
             />
 
-            <div className='flex items-center gap-4'>
+            <div className="flex items-center gap-4">
               <Textbox
-                placeholder='Date'
-                type='date'
-                name='date'
-                label='Task Date'
-                className='w-full rounded'
+                placeholder="Date"
+                type="date"
+                name="date"
+                label="Task Date"
+                className="w-full rounded font-serif" // Changed to font-serif for different font style
                 register={register("date", {
                   required: "Date is required!",
                 })}
                 error={errors.date ? errors.date.message : ""}
               />
               <Textbox
-                placeholder='Tag'
-                type='text'
-                name='tag'
-                label='Tag'
-                className='w-full rounded'
+                placeholder="Tag"
+                type="text"
+                name="tag"
+                label="Tag"
+                className="w-full rounded font-serif" // Changed to font-serif for different font style
                 register={register("tag", {
                   required: "Tag is required!",
                 })}
@@ -77,18 +77,18 @@ const AddSubTask = ({ open, setOpen, id }) => {
               />
             </div>
           </div>
-          <div className='py-3 mt-4 flex sm:flex-row-reverse gap-4'>
+          <div className="py-3 mt-4 flex sm:flex-row-reverse gap-4">
             <Button
-              type='submit'
-              className='bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 sm:ml-3 sm:w-auto'
-              label='Add Task'
+              type="submit"
+              className="bg-teal-600 text-sm font-semibold text-white hover:bg-teal-700 sm:ml-3 sm:w-auto" // Changed background and hover color to teal, adjusted font style
+              label="Add Task"
             />
 
             <Button
-              type='button'
-              className='bg-white border text-sm font-semibold text-gray-900 sm:w-auto'
+              type="button"
+              className="bg-gray-200 border text-sm font-semibold text-gray-900 sm:w-auto" // Changed background to light gray, font style adjusted
               onClick={() => setOpen(false)}
-              label='Cancel'
+              label="Cancel"
             />
           </div>
         </form>
