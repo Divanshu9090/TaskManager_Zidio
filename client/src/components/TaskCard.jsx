@@ -45,7 +45,7 @@ const TaskCard = ({ task }) => {
             <TaskDialog task={task} />
           ) : (
             <div 
-              className="text-gray-800  hover:text-customBlue"
+              className="text-gray-800  hover:text-customBlue hover:border-2"
               onClick={() => navigate(`/task/${task._id}`)}>
               Open Task
             </div>
