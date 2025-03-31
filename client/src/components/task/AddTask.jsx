@@ -143,7 +143,7 @@ const AddTask = ({ open, setOpen, task }) => {
                   type="date"
                   name="date"
                   label="Task Date"
-                  className="w-full rounded font-serif" // Changed to font-serif
+                  className="w-full rounded font-serif" 
                   register={register("date", {
                     required: "Date is required!",
                   })}
@@ -192,13 +192,13 @@ const AddTask = ({ open, setOpen, task }) => {
                   <Button
                     label="Submit"
                     type="submit"
-                    className="bg-teal-600 px-8 text-sm font-semibold text-white hover:bg-teal-700 sm:w-auto" // Updated button style to teal
+                    className="bg-teal-600 px-8 text-sm font-semibold text-white hover:bg-teal-700 sm:w-auto"
                   />
                 )}
 
                 <Button
                   type="button"
-                  className="bg-gray-200 px-5 text-sm font-semibold text-gray-900 sm:w-auto" // Updated cancel button style to light gray
+                  className="bg-gray-200 px-5 text-sm font-semibold text-gray-900 sm:w-auto"
                   onClick={() => setOpen(false)}
                   label="Cancel"
                 />

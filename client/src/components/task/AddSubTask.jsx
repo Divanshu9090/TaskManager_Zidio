@@ -35,7 +35,7 @@ const AddSubTask = ({ open, setOpen, id }) => {
         <form onSubmit={handleSubmit(handleOnSubmit)} className="">
           <Dialog.Title
             as="h2"
-            className="text-base font-semibold leading-6 text-gray-900 mb-4" // Adjusted font style here
+            className="text-base font-semibold leading-6 text-gray-900 mb-4"
           >
             ADD SUB-TASK
           </Dialog.Title>
@@ -45,7 +45,7 @@ const AddSubTask = ({ open, setOpen, id }) => {
               type="text"
               name="title"
               label="Title"
-              className="w-full rounded font-serif" // Changed to font-serif for different font style
+              className="w-full rounded font-serif" 
               register={register("title", {
                 required: "Title is required!",
               })}
@@ -58,7 +58,7 @@ const AddSubTask = ({ open, setOpen, id }) => {
                 type="date"
                 name="date"
                 label="Task Date"
-                className="w-full rounded font-serif" // Changed to font-serif for different font style
+                className="w-full rounded font-serif" 
                 register={register("date", {
                   required: "Date is required!",
                 })}
@@ -69,7 +69,7 @@ const AddSubTask = ({ open, setOpen, id }) => {
                 type="text"
                 name="tag"
                 label="Tag"
-                className="w-full rounded font-serif" // Changed to font-serif for different font style
+                className="w-full rounded font-serif"
                 register={register("tag", {
                   required: "Tag is required!",
                 })}
