@@ -14,6 +14,7 @@ import { FaList } from "react-icons/fa";
 import UserInfo from "./UserInfo";
 import { IoMdAdd } from "react-icons/io";
 import AddSubTask from "./task/AddSubTask";
+import { useNavigate } from "react-router-dom";
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -24,10 +25,11 @@ const ICONS = {
 const TaskCard = ({ task }) => {
   const { user } = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      <div className='w-full h-fit bg-white shadow-md p-4 rounded'>
+      <div className='w-full h-fit bg-white shadow-md p-4 rounded-custom'>
         <div className='w-full flex justify-between'>
           <div
             className={clsx(
@@ -39,7 +41,15 @@ const TaskCard = ({ task }) => {
             <span className='uppercase'>{task?.priority} Priority</span>
           </div>
 
-          {user?.isAdmin && <TaskDialog task={task} />}
+          {user?.isAdmin ? (
+            <TaskDialog task={task} />
+          ) : (
+            <div 
+              className="text-gray-800  hover:text-customBlue"
+              onClick={() => navigate(`/task/${task._id}`)}>
+              Open Task
+            </div>
+          )}
         </div>
 
         <>
